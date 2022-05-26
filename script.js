@@ -1,7 +1,7 @@
 let gamer={nom: "", email:""};
 let score=0;
 let mainPage=document.querySelector("main");
-let form=document.querySelector("form");
+let form=document.querySelector("form");sssss
 let home=document.querySelector(".home");
 let email=document.querySelector("#email");
 let nom=document.querySelector("#nom");
