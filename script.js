@@ -1,11 +1,10 @@
 let gamer={nom: "", email:""};
 let score=0;
 let mainPage=document.querySelector("main");
-let form=document.querySelector("form");sssss
+let form=document.querySelector("form");
 let home=document.querySelector(".home");
 let email=document.querySelector("#email");
 let nom=document.querySelector("#nom");
-let allInputs=document.querySelectorAll('[type|="radio"]');
 
 // RESULT PAGE ELEMENTS
 let resultPage=document.createElement("div");
@@ -66,26 +65,39 @@ let progressBarContained=document.createElement("span");
 progressBarContained.classList.add("progress-bar-contained");
 progressBar.appendChild(progressBarContained);
 
-
+// CHOICE-LIST
 let choiceList=document.createElement("div");
 choiceList.classList.add("choice-list");
 divQuestions.appendChild(choiceList);
 
-let choice1=document.createElement("div");
+// CHOICE 1
+let choice1=document.createElement("label");
 choice1.classList.add("choice-list__element","choice1");
+choice1.innerHTML='<input type="radio" id="choice1" name="choice" value="choice1">.ts';
+choice1.setAttribute("id","label1");
 choiceList.appendChild(choice1);
 
-let choice2=document.createElement("div");
+// CHOICE 2
+let choice2=document.createElement("label");
 choice2.classList.add("choice-list__element","choice2");
+choice2.innerHTML='<input type="radio" id="choice2" name="choice" value="choice2">.ts';
+choice2.setAttribute("id","label2");
 choiceList.appendChild(choice2);
 
-let choice3=document.createElement("div");
+// CHOICE 3
+let choice3=document.createElement("label");
 choice3.classList.add("choice-list__element","choice3");
+choice3.innerHTML='<input type="radio" id="choice3" name="choice" value="choice3">.ts';
+choice3.setAttribute("id","label3");
 choiceList.appendChild(choice3);
 
-let choice4=document.createElement("div");
+// CHOICE 4
+let choice4=document.createElement("label");
 choice4.classList.add("choice-list__element","choice4");
+choice4.innerHTML='<input type="radio" id="choice4" name="choice" value="choice4">.ts';
+choice4.setAttribute("id","label4");
 choiceList.appendChild(choice4);
+
 
 // CREATION DES BOUTONS
 let buttons=document.createElement("div");
@@ -102,62 +114,10 @@ buttonNext.classList.add("button-next", "style-of-button");
 buttonNext.textContent="Suivant";
 buttons.appendChild(buttonNext);
 
-// JE VAIS ESSAYER DE CREER UNE FONCTION POUR CREER LES ELEMENTS AUTOMATIQUEMENT
-
-//ELEMENT DE CHOICE_1
-// input
-let inputChoice1=document.createElement("input");
-inputChoice1.setAttribute("type","radio");
-inputChoice1.setAttribute("id","choice1");
-inputChoice1.setAttribute("name","choice");
-choice1.appendChild(inputChoice1);
-// label
-let label1=document.createElement("label");
-label1.setAttribute("for","choice1");
-choice1.appendChild(label1);
-
-//ELEMENT DE CHOICE_2
-// input
-let inputChoice2=document.createElement("input");
-inputChoice2.setAttribute("type","radio");
-inputChoice2.setAttribute("id","choice2");
-inputChoice2.setAttribute("name","choice");
-choice2.appendChild(inputChoice2);
-// label
-let label2=document.createElement("label");
-label2.setAttribute("for","choice2");
-choice2.appendChild(label2);
-
-//ELEMENT DE CHOICE_3
-// input
-let inputChoice3=document.createElement("input");
-inputChoice3.setAttribute("type","radio");
-inputChoice3.setAttribute("id","choice3");
-inputChoice3.setAttribute("name","choice");
-choice3.appendChild(inputChoice3);
-// label
-let label3=document.createElement("label");
-label3.setAttribute("for","choice3");
-choice3.appendChild(label3);
-
-//ELEMENT DE CHOICE_4
-// input
-let inputChoice4=document.createElement("input");
-inputChoice4.setAttribute("type","radio");
-inputChoice4.setAttribute("id","choice4");
-inputChoice4.setAttribute("name","choice");
-choice4.appendChild(inputChoice4);
-// label
-let label4=document.createElement("label");
-label4.setAttribute("for","choice4");
-choice4.appendChild(label4);
-
 let forgetName=document.querySelector(".forget-name");
 let forgetEmail=document.querySelector(".forget-email");
-let validate=false;
 let index=0;
-// gamer.nom="Précieux";
-// console.log(gamer.nom);
+
 // QUESTIONS
 let question_1={
     question: "Quel est le type d'un fichier JS ?",
@@ -301,27 +261,39 @@ let time=60;
 let timeWidth=100;
 let realTime=60;
 
+
+// MY FUNCTIONS
+function countDown(){
+    if (time==0) {
+        buttonNext.disabled=false;
+        buttonNext.click();
+    } else {
+        chrono.textContent=time;
+        time--;
+    }
+}
+
 function timeWidthFunction () {
     realTime-=0.01;
     progressBarContained.style.width=`${(100/60)*realTime}%`;
     if (time<10) progressBarContained.style.backgroundColor="#FF3838";
     else progressBarContained.style.backgroundColor="#028A3D";
-
 }
-    // MY FUNCTIONS
-    // COUNTDOWN FUNCTION
-    function countDown(){
-        if (time==0) {
-            buttonNext.disabled=false;
-            buttonNext.click();
-        }
-        else {
-            chrono.textContent=time;
-            time--;
 
-        }
+function giveStyleWhenSelected (element) {
+    buttonNext.disabled=false;
+    buttonNext.style.backgroundColor="#028A3D";
+    for (let i=0; i<choicesTable.length; i++) {
+        if (choicesTable[i].id==element.id) element.style.border="1px solid #028A3D";
+        else choicesTable[i].style.border="1px solid #DDDDDD";
     }
-    
+}
+
+let choicesTable = [choice1,choice2,choice3,choice4];
+let inputChoice1;
+let inputChoice2;
+let inputChoice3;
+let inputChoice4;
 function displayQuestionAndChoice () {
     buttonNext.disabled=true;
     buttonNext.style.backgroundColor="rgba(2, 138, 61, 0.42)";
@@ -329,31 +301,28 @@ function displayQuestionAndChoice () {
     realTime=60;
     chrono.textContent="60";
     questionParagraph.textContent=listOfQuestions[index].question;
-    numberOfQuestions.textContent="Question "+(index+1) +"/15";
-    inputChoice1.setAttribute("value",listOfQuestions[index].proposition_1);
-    inputChoice2.setAttribute("value",listOfQuestions[index].proposition_2);
-    inputChoice3.setAttribute("value",listOfQuestions[index].proposition_3);
-    inputChoice4.setAttribute("value",listOfQuestions[index].proposition_4);
-    label1.textContent=listOfQuestions[index].proposition_1;
-    label2.textContent=listOfQuestions[index].proposition_2;
-    label3.textContent=listOfQuestions[index].proposition_3;
-    label4.textContent=listOfQuestions[index].proposition_4;
-    
+    numberOfQuestions.textContent="Question "+(index+1) +"/"+listOfQuestions.length;
 
-    
-    
+    for (let i=0; i<choicesTable.length; i++) choicesTable[i].style.border="1px solid #DDDDDD";
+    choice1.innerHTML=`<input type="radio" id="choice1" name="choice" value="${listOfQuestions[index].proposition_1}">${listOfQuestions[index].proposition_1}`;
+    choice2.innerHTML=`<input type="radio" id="choice2" name="choice" value="${listOfQuestions[index].proposition_2}">${listOfQuestions[index].proposition_2}`;
+    choice3.innerHTML=`<input type="radio" id="choice3" name="choice" value="${listOfQuestions[index].proposition_3}">${listOfQuestions[index].proposition_3}`;
+    choice4.innerHTML=`<input type="radio" id="choice4" name="choice" value="${listOfQuestions[index].proposition_4}">${listOfQuestions[index].proposition_4}`;
+
+    inputChoice1=document.querySelector("#choice1");
+    inputChoice2=document.querySelector("#choice2");
+    inputChoice3=document.querySelector("#choice3");
+    inputChoice4=document.querySelector("#choice4");
 }
 function ckeckTheChoice () {
     if  (inputChoice1.checked==true && inputChoice1.value==listOfQuestions[index].trueAnswer) score+=1;
     else if  (inputChoice2.checked==true && inputChoice2.value==listOfQuestions[index].trueAnswer) score+=1;
     else if  (inputChoice3.checked==true && inputChoice3.value==listOfQuestions[index].trueAnswer) score+=1;
     else if  (inputChoice4.checked==true && inputChoice4.value==listOfQuestions[index].trueAnswer) score+=1;   
-
     inputChoice1.checked=false;
     inputChoice2.checked=false;
     inputChoice3.checked=false;
     inputChoice4.checked=false;
-
 }
 
 function displayResult () {
@@ -368,32 +337,34 @@ function displayResult () {
     scoreParagraph.textContent=score+"/15";
     buttonHome.textContent="Accueil";
 }
-
-form.addEventListener("submit",function (event) {
-    event.preventDefault();
-    
-    console.log(score);
-    if (nom.value=="" || email.value=="") {
-        
-        if (nom.value=="") {
-            forgetName.style.display="block";
-        } 
-        if (email.value=="") forgetEmail.style.display="block";
-    } 
+// nom, email, forgetName, forgetEmail
+function validate(input1, input2, error1, error2) {
+    let masque = /\s/g; // Caractères blancs
+    let masqueEmail = /(@[a-z]+.com)$/;
+    if (masque.test(input1.value) || input1.value=="" || !(masqueEmail.test(input2.value)) || input2.value=="") {
+        if (masque.test(input1.value) || input1.value=="") {
+            error1.style.display="block";
+        }   
+        if (!(masqueEmail.test(input2.value)) || input2.value=="") {
+            error2.style.display="block";
+        }          
+    }
     else {
-        gamer.nom=nom.value;
-        gamer.email=email.value;
+        gamer.nom=input1.value;
+        gamer.email=input2.value;
         home.style.display="none";
         divQuestions.style.display="block";
         let x=setInterval(() => countDown(), 1000);
         let y=setInterval(() => timeWidthFunction(), 10);
         displayQuestionAndChoice ();
-    }
+    } 
+}
 
+form.addEventListener("submit",function (event) {
+    event.preventDefault();
+    validate(nom, email, forgetName, forgetEmail);
 });
-
 buttonNext.addEventListener("click", function (event) {
-
     if (index<listOfQuestions.length) {
         ckeckTheChoice();
         if (index==listOfQuestions.length-1) {
@@ -406,74 +377,14 @@ buttonNext.addEventListener("click", function (event) {
         }
     }    
 });
-
-buttonHome.addEventListener("click", function (event) {
-    location.reload();
-});
-
+buttonHome.addEventListener("click", function (event) { location.reload()});
 buttonQuit.addEventListener("click", function(event) {
     divQuestions.style.display="none";
     resultPage.style.display="flex";
     displayResult();
 })
-let ide="";
-inputChoice1.addEventListener("click", function (event){
-    buttonNext.disabled=false;
-    buttonNext.style.backgroundColor="#028A3D";
-    // UTILISER EVENT TARGET POUR A LA PLACE DES InputChoice2 POUR LA FONCTION QUE JE VAIS APPELER
 
-    if (ide=="") {
-        ide=""+inputChoice1.id;
-        inputChoice1.parentElement.style.border="1px solid #028A3D";
-    }
-    else {
-        inputChoice1.parentElement.style.border="1px solid #028A3D";
-        document.getElementById(`${ide}`).parentElement.style.border="1px solid #DDDDDD";
-        ide=""+inputChoice1.id;
-    }
-    console.log(ide);
-
-})
-inputChoice2.addEventListener("click", function (event){
-    buttonNext.disabled=false;
-    buttonNext.style.backgroundColor="#028A3D";
-    // UTILISER EVENT TARGET POUR A LA PLACE DES InputChoice2 POUR LA FONCTION QUE JE VAIS APPELER
-    if (ide=="") {
-        ide=""+inputChoice2.id;
-
-        inputChoice2.parentElement.style.border="1px solid #028A3D";
-    }
-    else {
-        inputChoice2.parentElement.style.border="1px solid #028A3D";
-        document.getElementById(`${ide}`).parentElement.style.border="1px solid #DDDDDD";
-        ide=""+inputChoice2.id;
-    }
-
-
-})
-inputChoice3.addEventListener("click", function (event){
-    buttonNext.disabled=false;
-    buttonNext.style.backgroundColor="#028A3D";
-    if (ide=="") {
-        ide=""+inputChoice3.id;
-        inputChoice3.parentElement.style.border="1px solid #028A3D";
-    }
-    else {
-        inputChoice3.parentElement.style.border="1px solid #028A3D";
-        document.getElementById(`${ide}`).parentElement.style.border="1px solid #DDDDDD";
-        ide=""+inputChoice3.id;
-    }
-})
-inputChoice4.addEventListener("click", function (event){
-    buttonNext.disabled=false;
-    buttonNext.style.backgroundColor="#028A3D";
-    if (ide=="") {
-        ide=""+inputChoice4.id;
-        inputChoice4.parentElement.style.border="1px solid #028A3D";
-    }
-    else {
-        inputChoice4.parentElement.style.border="1px solid #028A3D";
-        document.getElementById(`${ide}`).parentElement.style.border="1px solid #DDDDDD";
-        ide=""+inputChoice4.id;
-    }
-})
+choice1.addEventListener("click", function (){ giveStyleWhenSelected(choice1)});
+choice2.addEventListener("click", function (){ giveStyleWhenSelected(choice2)});
+choice3.addEventListener("click", function (){ giveStyleWhenSelected(choice3)});
+choice4.addEventListener("click", function (){ giveStyleWhenSelected(choice4)});

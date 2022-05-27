@@ -1,17 +1,16 @@
-html {
-    
-    font-size: 10px;
-  
+html {   
+    font-size: 10px; 
 }
 
 body {
     box-sizing: border-box;
+    height:100vh;
     margin: 0;
     padding:0;
     background:linear-gradient(to right,#85F6B8,#8ED9EBD9);
     display: flex;
     justify-content: center;
-    align-content: center;
+    align-items: center;
     font-family: 'Inter';
     font-style: normal;
 }
@@ -19,13 +18,12 @@ body {
 /* MAIN */
 
 main {
-    width:33%;
-    padding:2.5% 3%;
+    width:31%;
+    padding:2.4%;
     background: #FFFFFF;
     color: #555555;
     margin:1.5% 0;
 }
-
 
 .big-title {
     font-weight: 500;
@@ -40,9 +38,9 @@ main {
     font-size: 1.6rem;
     font-weight: 400;
     line-height: 3.2rem;
-    /* or 158% */
     text-align: center;
 }
+
 .gamer-info-bloc {
     margin-top:7%;
 }
@@ -73,18 +71,13 @@ main {
     font-size: 1rem;
     line-height: 1.5rem;
     margin-top: 1%;
-    /* position:absolute;
-    top:90%; */
 }
-
 
 .begin-tests {
     background-color: #028A3D;
     margin:8% auto;
     display:block;
     text-align: center;
-
-
     height:20%;
     width:45%;
     color:white;
@@ -95,6 +88,7 @@ main {
     font-size: 2rem;
     line-height: 2.4rem;
     box-shadow: 0 .2rem .1rem .1rem #c4C4C4;
+    cursor:pointer;
 }
 
 
@@ -121,7 +115,6 @@ main {
     font-size: 1.4rem;
     line-height: 3.2rem;
     color: #555555;
-
 }
 
 .chrono {
@@ -129,7 +122,6 @@ main {
     font-size: 1.4rem;
     line-height: 3.2rem;
     color: #555555;
-
 }
 
 .progress-bar {
@@ -147,15 +139,34 @@ main {
 }
 
 .choice-list__element {
+    display: block;
     height: 7.5%;
     border: 1px solid #DDDDDD;
     padding: 1rem;
     margin-bottom:5%;
     font-size: 2rem;
+    cursor:pointer;
+}
+
+[name|="choice"] {
+    appearance: none;
+    /* border-radius: 100%; */
+    /* border: 1rem solid #DDDDDD; */
+    border: .1rem solid #DDDDDD;
+    border-radius: 1.7rem;
+    height: 1.7rem;
+    width: 1.7rem;
+    margin-right: 3%;
+    cursor:pointer
+}
+
+[for] {
+cursor: pointer;
 }
 
 [name|="choice"]:checked {
-    border: 1rem solid #028A3D;
+    border: .1rem solid #028A3D;
+    background-color: #028A3D;
 }
 
 .buttons {
@@ -237,28 +248,11 @@ main {
     margin:10% 0 5% 0;
 }
 
-[name|="choice"] {
-    appearance: none;
-    /* border-radius: 100%; */
-    /* border: 1rem solid #DDDDDD; */
-    border: 1px solid #DDDDDD;
-    border-radius: 2rem;
-    height: 2rem;
-    width: 2rem;
-}
-
-
-/* [name|="choice"]:checked .choice-list__element {
-    border: 1rem solid #028A3D;
-
-} */
-
 @media all and (min-width:600px) and (max-width: 1024px) {
     main {
         width:50%;
     }    
 }
-
 
 @media all and (min-width:320px) and (max-width: 600px) {
     main {
@@ -266,5 +260,14 @@ main {
     }
   .begin-tests {
         width:70%;
+    }
+}
+
+@media all and (max-width: 320px) {
+    main {
+        width:80%;
+    }
+  .begin-tests {
+        width:100%;
     }
 }
