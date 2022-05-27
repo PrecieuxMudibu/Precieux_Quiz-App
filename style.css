@@ -59,11 +59,13 @@ main {
     font-size: 1.5rem;
     color: #555555;
     padding:3%;
+    outline: none;
 }
 
 .style-of-input {
     display: block;
 }
+
 .forget-name, .forget-email {
     display:none;
     color:#FF3838;
