@@ -343,9 +343,12 @@ function validate(input1, input2, error1, error2) {
     let masqueEmail = /(@[a-z]+.com)$/;
     if (masque.test(input1.value) || input1.value=="" || !(masqueEmail.test(input2.value)) || input2.value=="") {
         if (masque.test(input1.value) || input1.value=="") {
+            input1.style.border="1px solid #FF3838";
             error1.style.display="block";
         }   
         if (!(masqueEmail.test(input2.value)) || input2.value=="") {
+            input2.style.border="1px solid #FF3838";
+
             error2.style.display="block";
         }          
     }
