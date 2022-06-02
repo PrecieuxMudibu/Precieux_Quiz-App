@@ -25,14 +25,14 @@ main {
     margin:1.5% 0;
 }
 
-.big-title {
+.home-page__big-title {
     font-weight: 500;
     font-size: 3.2rem;
     line-height: 3.9rem;
     text-align: center;
 }
 
-.paragraph {
+.home-page__paragraph {
     margin:4% auto;
     width:85%;
     font-size: 1.6rem;
@@ -41,10 +41,10 @@ main {
     text-align: center;
 }
 
-.gamer-info-bloc {
+.home-page__gamer-info-bloc {
     margin-top:7%;
 }
-.gamer-info {
+.home-page__gamer-info {
     font-weight: 400;
     font-size: 1.6rem;
     line-height: 1.9rem;
@@ -52,7 +52,7 @@ main {
     margin-bottom: 2%;
 }
 
-.input {
+.home-page__input {
     border: 1px solid #DDDDDD;
     display: block;
     width: 94%;
@@ -66,7 +66,7 @@ main {
     display: block;
 }
 
-.forget-name, .forget-email {
+.home-page__forget-name, .home-page__forget-email {
     display:none;
     color:#FF3838;
     font-weight: 400;
@@ -75,7 +75,7 @@ main {
     margin-top: 1%;
 }
 
-.begin-tests {
+.home-page__begin-tests {
     background-color: #028A3D;
     margin:8% auto;
     display:block;
@@ -95,22 +95,22 @@ main {
 
 
 /* SECOND PAGE */
-.div-questions {
+.question-page {
     display: none;
 }
 
-.question {
+.question-page__question {
     margin-top:6%;
     font-size: 1.6rem;
     font-weight: 400;
     line-height: 3.2rem;
     text-align: center;
 }
-.question-number-and-chrono {
+.question-page__number-and-chrono {
     display: flex;
     justify-content: space-between;
 }
-.number-of-question {
+.question-page__number {
     display: block;
     font-style: normal;
     font-weight: 400;
@@ -119,21 +119,21 @@ main {
     color: #555555;
 }
 
-.chrono {
+.question-page__time-in-text {
     display: block;
     font-size: 1.4rem;
     line-height: 3.2rem;
     color: #555555;
 }
 
-.progress-bar {
+.question-page__progress-bar {
     height:1rem;
     background-color:#DDDDDD;
     border-radius: 1rem;
     margin-bottom: 10%;
 }
 
-.progress-bar-contained {
+.progress-bar__gauge {
     display: block;
     border-radius: 1rem;
     background-color:#028A3D;
@@ -171,7 +171,7 @@ cursor: pointer;
     background-color: #028A3D;
 }
 
-.buttons {
+.question-page__buttons {
     display: flex;
     justify-content: space-between;
     margin:10% 0 5% 0;
@@ -215,7 +215,7 @@ cursor: pointer;
     align-items: center;
 }
 
-.second-title {
+.result-page__gamer-name {
     margin:15% 0 0 0;
     font-weight: 500;
     font-size: 4rem;
@@ -223,7 +223,7 @@ cursor: pointer;
     text-align: center;
 }
 
-.email-of-gamer {
+.result-page__gamer-email {
     margin-bottom: 6%;
     width:85%;
     font-size: 1.6rem;
@@ -232,14 +232,14 @@ cursor: pointer;
     text-align: center;
 }
 
-.icone
+.result-page__icon
 {
     color:#028A3D;
     font-size: 1450%;
     font-weight: normal;
 }
 
-.score {
+.result-page__score {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
@@ -260,7 +260,7 @@ cursor: pointer;
     main {
         width:80%;
     }
-  .begin-tests {
+  .home-page__begin-tests {
         width:70%;
     }
 }
@@ -269,7 +269,7 @@ cursor: pointer;
     main {
         width:80%;
     }
-  .begin-tests {
+  .home-page__begin-tests {
         width:100%;
     }
 }
