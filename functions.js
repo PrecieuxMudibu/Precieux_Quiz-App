@@ -15,6 +15,7 @@ function giveStyleToElementSelected () {
 
 function giveStyleWhenSelected (element) {
     buttonNext.disabled=false;
+    buttonNext.style.cursor="pointer";
     buttonNext.style.backgroundColor="#028A3D";
     for (let i=0; i<choicesListTable.length; i++) {
         if (choicesListTable[i].id==element.id) element.style.border="1px solid #028A3D";
@@ -48,6 +49,7 @@ function ckeckTheChoice () {
 
 function displayQuestionAndChoice () {
     buttonNext.disabled=true;
+    buttonNext.style.cursor="not-allowed";
     buttonNext.style.backgroundColor="rgba(2, 138, 61, 0.42)";
     time=60;
     timeForProgressBarGauge=60;
@@ -75,29 +77,44 @@ function displayResult () {
     buttonHome.textContent="Accueil";
 }
 
-function testInputs(inputName, inputEmail, errorName, errorEmail) {
-    let masque = /\s/g;
-    let masqueEmail = /(@[a-z]+.com)$/;
-    if (masque.test(inputName.value) || inputName.value=="" || !(masqueEmail.test(inputEmail.value)) || inputEmail.value=="") {
-        if (masque.test(inputName.value) || inputName.value=="") {
-            showError(inputName,errorName);
-        } else {
-            dontShowError(inputName,errorName);
-        }  
-        if (!(masqueEmail.test(inputEmail.value)) || inputEmail.value=="") {
+function testInputs (inputName, inputEmail, errorName, errorEmail) {
+    let blankCharacter = /\s/g;
+    let masqueEmail = /^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$/;    
+    if (blankCharacter.test(inputName.value) || inputName.value=="" || !(masqueEmail.test(inputEmail.value)) || inputEmail.value=="" || inputName.value.length<2) {
+        if (blankCharacter.test(inputName.value) || inputName.value=="" || inputName.value.length<2) {
+            if (inputName.value.length<2 && !(inputName.value=="")) {
+                errorName.textContent="Saisissez un nom d'au moins deux caractères";
+                showError(inputName,errorName);
+            } else {
+                errorName.textContent="N’oubliez pas de renseigner votre nom avant de commencer le Quiz.";             
+                showError(inputName,errorName);
+            }            
+        } else dontShowError(inputName,errorName);  
+        if (!(masqueEmail.test(inputEmail.value))) {
+            errorEmail.textContent="Veuillez renseignez un email valide.";
             showError(inputEmail,errorEmail);
-        } else {
-            dontShowError(inputEmail,errorEmail);
-        }         
-    } else {
-        gamer.nom=inputName.value;
-        gamer.email=inputEmail.value;
+            if (inputEmail.value=="") {
+                errorEmail.textContent="N’oubliez pas de renseigner votre email avant de commencer le Quiz."
+                showError(inputEmail,errorEmail);
+            }
+        } else dontShowError(inputEmail,errorEmail);        
+    } else { 
+        registerGamerInfo(inputName.value,inputEmail.value);       
+        goToTheQuestionPage ();
+    } 
+}
+
+function registerGamerInfo (name,email) {
+    gamer.nom=name;
+    gamer.email=email;
+}      
+
+function goToTheQuestionPage () {
         homePage.style.display="none";
         questionPage.style.display="block";
         setInterval(() => countDown(), 1000);
         setInterval(() => reduceGauge(), 10);
         displayQuestionAndChoice ();
-    } 
 }
 
 function showError (element, error) {
