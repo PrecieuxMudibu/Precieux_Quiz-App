@@ -59,6 +59,7 @@ function displayQuestionAndChoice () {
         choicesListTable[i].style.border="1px solid #DDDDDD";
         choicesListTable[i].innerHTML=`<input type="radio" id="choice${i+1}" name="choice" value="${listOfQuestions[index].propositions[i]}">${listOfQuestions[index].propositions[i]}`
     }
+    if (index==listOfQuestions.length-1) buttonNext.textContent="Terminer";
 }
 
 function displayResult () {
@@ -74,27 +75,37 @@ function displayResult () {
     buttonHome.textContent="Accueil";
 }
 
-// nom, email, forgetName, forgetEmail
-function testInputs(input1, input2, error1, error2) {
-    let masque = /\s/g; // Caractères blancs
+function testInputs(inputName, inputEmail, errorName, errorEmail) {
+    let masque = /\s/g;
     let masqueEmail = /(@[a-z]+.com)$/;
-    if (masque.test(input1.value) || input1.value=="" || !(masqueEmail.test(input2.value)) || input2.value=="") {
-        if (masque.test(input1.value) || input1.value=="") {
-            input1.style.border="1px solid #FF3838";
-            error1.style.display="block";
-        }   
-        if (!(masqueEmail.test(input2.value)) || input2.value=="") {
-            input2.style.border="1px solid #FF3838";
-            error2.style.display="block";
-        }          
-    }
-    else {
-        gamer.nom=input1.value;
-        gamer.email=input2.value;
+    if (masque.test(inputName.value) || inputName.value=="" || !(masqueEmail.test(inputEmail.value)) || inputEmail.value=="") {
+        if (masque.test(inputName.value) || inputName.value=="") {
+            showError(inputName,errorName);
+        } else {
+            dontShowError(inputName,errorName);
+        }  
+        if (!(masqueEmail.test(inputEmail.value)) || inputEmail.value=="") {
+            showError(inputEmail,errorEmail);
+        } else {
+            dontShowError(inputEmail,errorEmail);
+        }         
+    } else {
+        gamer.nom=inputName.value;
+        gamer.email=inputEmail.value;
         homePage.style.display="none";
         questionPage.style.display="block";
         setInterval(() => countDown(), 1000);
         setInterval(() => reduceGauge(), 10);
         displayQuestionAndChoice ();
     } 
+}
+
+function showError (element, error) {
+    element.style.border="1px solid #FF3838";
+    error.style.display="block";
+}
+
+function dontShowError (element, error) {
+    element.style.border="1px solid #DDDDDD";
+    error.style.display="none";
 }
