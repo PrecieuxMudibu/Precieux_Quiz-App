@@ -15,10 +15,8 @@ body {
     font-style: normal;
 }
 
-/* MAIN */
-
 main {
-    width:31%;
+    width:29%;
     padding:2.4%;
     background: #FFFFFF;
     color: #555555;
@@ -34,7 +32,7 @@ main {
 
 .home-page__paragraph {
     margin:4% auto;
-    width:85%;
+    width:90%;
     font-size: 1.6rem;
     font-weight: 400;
     line-height: 3.2rem;
@@ -61,6 +59,11 @@ main {
     padding:3%;
     outline: none;
 }
+
+.home-page__input:focus .home-page__forget-email {
+    display: none;
+}
+
 
 .style-of-input {
     display: block;
@@ -94,7 +97,6 @@ main {
 }
 
 
-/* SECOND PAGE */
 .question-page {
     display: none;
 }
@@ -152,8 +154,6 @@ main {
 
 [name|="choice"] {
     appearance: none;
-    /* border-radius: 100%; */
-    /* border: 1rem solid #DDDDDD; */
     border: .1rem solid #DDDDDD;
     border-radius: 1.7rem;
     height: 1.7rem;
@@ -199,10 +199,8 @@ cursor: pointer;
 
 .button-next {
     background-color: #028A3D;
-    cursor:pointer;
 }
 
-/* THIRD PAGE */
 .button-home {
     background-color: #0880D6;
     cursor:pointer;
@@ -227,7 +225,7 @@ cursor: pointer;
     margin-bottom: 6%;
     width:85%;
     font-size: 1.6rem;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 3.2rem;
     text-align: center;
 }
@@ -249,27 +247,40 @@ cursor: pointer;
     color: #555555;
     margin:10% 0 5% 0;
 }
-
-@media all and (min-width:600px) and (max-width: 1024px) {
+@media all and (min-width:1024px) {
     main {
-        width:50%;
+        width:30%;
     }    
 }
-
-@media all and (min-width:320px) and (max-width: 600px) {
+@media all and (min-width:600px) and (max-width: 1024px) {
     main {
-        width:80%;
+        width:40%;
     }
-  .home-page__begin-tests {
+    .home-page__begin-tests {
+        width:50%;
+    }   
+}
+
+@media all and (min-width:500px) and (max-width: 600px) {
+    main, .home-page__begin-tests{
+        width:55%;
+    }
+}
+
+@media all and (min-width:400px) and (max-width: 500px) {
+    main, .home-page__begin-tests{
+        width:60%;
+    }
+}
+
+@media all and (min-width:320px) and (max-width: 400px) {
+    main, .home-page__begin-tests{
         width:70%;
     }
 }
 
 @media all and (max-width: 320px) {
-    main {
+    main, .home-page__begin-tests {
         width:80%;
-    }
-  .home-page__begin-tests {
-        width:100%;
     }
 }
