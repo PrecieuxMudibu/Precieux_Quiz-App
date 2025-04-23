@@ -80,7 +80,7 @@ function displayResult () {
 function testInputs (inputName, inputEmail, errorName, errorEmail) {
     let blankCharacter = /\s/g;
     let masqueEmail = /^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$/;    
-    if (blankCharacter.test(inputName.value) || inputName.value=="" || !(masqueEmail.test(inputEmail.value)) || inputEmail.value=="" || inputName.value.length<2) {
+    if (inputName.value=="" || !(masqueEmail.test(inputEmail.value)) || inputEmail.value=="" || inputName.value.length<2) {
         if (blankCharacter.test(inputName.value) || inputName.value=="" || inputName.value.length<2) {
             if (inputName.value.length<2 && !(inputName.value=="")) {
                 errorName.textContent="Saisissez un nom d'au moins deux caractères";
